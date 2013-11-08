@@ -152,9 +152,8 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
         'module' => 'entityreference',
         'settings' => array(
           'conditions' => array(),
-          'link' => FALSE,
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_id',
         'weight' => 2,
       ),
     ),
