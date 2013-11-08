@@ -38,13 +38,13 @@ function gsb_feature_featured_person_fpp_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '5',
         ),
       ),
       'display' => array(
         'title' => array(
           'default' => array(
-            'weight' => '-5',
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),

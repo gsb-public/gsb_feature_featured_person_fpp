@@ -24,7 +24,7 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
           'conditions' => array(),
         ),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -74,7 +74,7 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
           'conditions' => array(),
         ),
         'type' => 'list_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -116,7 +116,7 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
           'conditions' => array(),
         ),
         'type' => 'list_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -140,8 +140,8 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-featured_person-field_person_ref'
-  $field_instances['fieldable_panels_pane-featured_person-field_person_ref'] = array(
+  // Exported field_instance: 'fieldable_panels_pane-featured_person-field_person_fac_single_ref'
+  $field_instances['fieldable_panels_pane-featured_person-field_person_fac_single_ref'] = array(
     'bundle' => 'featured_person',
     'default_value' => NULL,
     'deleted' => 0,
@@ -155,13 +155,13 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 0,
+        'weight' => 2,
       ),
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_faculty_ref',
-    'label' => 'Faculty Reference',
+    'field_name' => 'field_person_fac_single_ref',
+    'label' => 'Person',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -229,8 +229,8 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Display Email');
   t('Display Phone');
-  t('Person Reference');
   t('Label');
+  t('Person');
   t('Text');
 
   return $field_instances;
