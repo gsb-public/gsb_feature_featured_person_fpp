@@ -20,6 +20,6 @@ features[field_base][] = field_display_phone
 features[field_instance][] = fieldable_panels_pane-featured_person-field_body
 features[field_instance][] = fieldable_panels_pane-featured_person-field_display_email
 features[field_instance][] = fieldable_panels_pane-featured_person-field_display_phone
-features[field_instance][] = fieldable_panels_pane-featured_person-field_person_fac_single_ref
+features[field_instance][] = fieldable_panels_pane-featured_person-field_person_ref
 features[field_instance][] = fieldable_panels_pane-featured_person-field_title
 features[variable][] = field_bundle_settings_fieldable_panels_pane__featured_person

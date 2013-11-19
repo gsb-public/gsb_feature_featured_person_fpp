@@ -140,8 +140,8 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-featured_person-field_person_fac_single_ref'
-  $field_instances['fieldable_panels_pane-featured_person-field_person_fac_single_ref'] = array(
+  // Exported field_instance: 'fieldable_panels_pane-featured_person-field_person_ref'
+  $field_instances['fieldable_panels_pane-featured_person-field_person_ref'] = array(
     'bundle' => 'featured_person',
     'default_value' => NULL,
     'deleted' => 0,
@@ -159,7 +159,7 @@ function gsb_feature_featured_person_fpp_field_default_field_instances() {
     ),
     'ds_extras_field_template' => '',
     'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_person_fac_single_ref',
+    'field_name' => 'field_person_ref',
     'label' => 'Person',
     'required' => 1,
     'settings' => array(
