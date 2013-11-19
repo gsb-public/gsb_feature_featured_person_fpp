@@ -35,17 +35,112 @@ function gsb_feature_featured_person_fpp_preprocess_fieldable_panels_pane(&$vari
   // Add classes based on the display style.
   try {
     $wrapper = entity_metadata_wrapper('fieldable_panels_pane', $variables['elements']['#element']);
-    $variables['output']['title'] = $wrapper->field_title->value();
-    $person = $wrapper->field_person_fac_single_ref;
-    $image = $person->field_image_single_public->value();
-    $variables['output']['title'] = $wrapper->field_title->value();
+    $person = $wrapper->field_person_ref;
+    $bundle = $person->getBundle();
+
+    $output['title'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'featured-person-label',
+        ),
+      ),
+      '#children' => $wrapper->field_title->value(),
+    );
+    $output['image'] = array(
+      '#theme' => 'image_formatter',
+      '#item' => $person->field_image_single_public->value(),
+      '#image_style' => '170x170',
+    );
+
     $name = array();
     $name[] = $person->field_salutation->value();
     $name[] = $person->field_first_name->value();
     $name[] = $person->field_middle_name->value();
     $name[] = $person->field_last_name->value();
-    $variables['output']['name'] = implode(' ', $name);
+    if ($bundle == 'phd_candidate') {
+      $name[] = $person->field_suffix_name->value();
+    }
+    $name = array_map('trim', $name);
+    $name = implode(' ', array_filter($name));
+    $output['name'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array(
+          'group-name-wrapper',
+        ),
+      ),
+      'link' => array(
+        '#type' => 'link',
+        '#href' => 'node/' . $person->getIdentifier(),
+        '#title' => $name,
+      ),
+    );
+    if ($bundle == 'faculty') {
+      if ($rank = $person->field_rank->value()) {
+        $output['rank_area']['rank'] = array(
+          '#markup' => $rank,
+        );
+      }
+      if ($academic_area = $person->field_academic_area_single->label()) {
+        if ($rank) {
+          $output['rank_area']['separator']['#markup'] = ', ';
+        }
+        $output['rank_area']['academic_area'] = array(
+          '#markup' => $academic_area,
+        );
+      }
+      if (isset($output['rank_area'])) {
+        $output['rank_area'] += array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array(
+              'group-rank-area',
+            ),
+          ),
+        );
+      }
+    }
+    if ($body = $wrapper->field_body->value()) {
+      $output['body'] = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'field-name-field-body',
+          ),
+        ),
+        '#children' => '<p>' . $body . '</p>',
+      );
+    }
+    if (in_array($bundle, array('faculty', 'staff')) && $wrapper->field_display_phone->value() && $phone = $person->field_phone->value()) {
+      $output['phone'] = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'telephone',
+          ),
+        ),
+        '#children' => t('Phone @phone', array('@phone' => $phone)),
+      );
+    }
+    if (in_array($bundle, array('faculty', 'staff', 'phd_candidate')) && $wrapper->field_display_email->value() && $email = $person->field_email->value()) {
+      $output['email'] = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array(
+            'email',
+          ),
+        ),
+        'link' => array(
+          '#type' => 'link',
+          '#href' => 'mailto:' . $email,
+          '#title' => t('Email @name', array('@name' => $name)),
+        ),
+      );
+    }
   }
   catch (EntityMetadataWrapperException $e) {
+    $output = '';
   }
+  $variables['fields'] = render($output);
 }
